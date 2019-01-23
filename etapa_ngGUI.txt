@@ -1,0 +1,134 @@
+﻿Fase 1: Como discutimos, neste primeiro momento o 
+interessante (mais rápido) é consumir arquivos que 
+estejam no HTS ou qualquer outro serviço. Nestes arquivos
+existirão as mensagens em um padrão que iremos estabelecer. 
+Acredito que basicamente a mensagem deve conter informações
+do “host”, do objeto de origem, objeto de destino, “categoria”
+e algum payload necessário. Penso que devemos registrar os 
+comportamentos básicos da rede e as ações que ela realiza. 
+Dessa forma, minha sugestão é que cada fez que ocorra uma operação
+(como uma descoberta) seja publicado um “log” para a HTS. Com isso,
+teremos essa informação disponível para ser adquirida. É um bom 
+caminho e fácil de seguir. É só termos em mente que sempre que “exibimos”
+algo no terminal e quisermos que “este algo” esteja no nosso log, 
+devemos publicar essa mensagem também para a HTS. Aqui, a implementação é puramente NG.
+
+Objetivo: 
+    # Consumir arquivos que estejam no HTS ou qualquer outro serviço.
+    # Nesses arquivos existirão mensagens no padrão que iremos estabelecer.
+    
+    if (ocorreu_operação(descoberta))
+        publicar_log para o HTS
+
+Dados do "Log": [host (do obj de origem), obj de destino, categoria e algum payload (se necessário)]
+
+PGCS (Proxy/Gateway/Controller Service)
+
+1 - Publicação de nome e conteudo para o cache de rede (HTS);
+2 - Publicação e notificação de publicação;
+3 - Assinatura de nome e conteúdo;
+4 - Assinatura e notificação de assinatura;
+5 - Remoção de nome e conteúdo do cache de rede.
+6 - Entrega de nomes via HTS.
+
+Generic Indirection Resolution Service (GIRS):
+
+1 - Seleciona o cache de rede que de fato vai guardar um nome
+ e conteúdos associados.
+
+Hash Table Service (HTS):
+
+1 - Armazena nomes e conteúdos associados.
+
+Publish/Subscribe Service (PSS):
+
+1 - Controla quem acessa o que.
+2 - As aplicações publicam/assinam via PSS.
+
+
+Fase 2: Com os arquivos sendo criados, devemos criar um script em python que não será NovaGenesis que 
+irá percorrer o diretório (ou ficar escutando ele) e sempre que houver novos arquivos, identificá-los,
+provocar um parse e submeter via POST para uma API de um sistema web que teremos as informações para
+serem registradas. Aqui será um script python, que rodará junto ao script de teste, com os mapeamentos
+necessários das pastas e configurações do servidor.
+
+Objetivo:
+    # criar um script em python para percorrer o diretório e ficar escutando ele
+
+    if (houver_novos_arquivos)
+        # identificar
+        # provocar um parse
+        # submeter via POST para uma API de sistema web
+
+Fase 3: Desenvolvimento da plataforma web que fará a leitu
+ra e gestão de todas as estruturas e armazenamento de logs.
+E uma visualização simplificada dos testes e das informações.
+Imagine como um “gerenciador de log”. Faremos o desenvolvimento em Python com Django.  
+
+
+// Fazendo uma leitura no banco
+
+MATCH (n) RETURN n LIMIT 30
+MATCH (n:Person) RETURN n LIMIT 30
+
+// Criando um nó específico
+
+CREATE (n:Person {name: "Ensley",sobrenome: "Ribeiro"})
+
+// Criando um relacionamento
+
+CREATE (person:Person{name:"Ensley"})
+CREATE (arq:Arquitetura{name:"NovaGenesis"})
+CREATE (person)-[r:Usa]->(arq)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+131.221.243.0
+
+
+
+192.168.1.2
+
+192.168.1.3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
